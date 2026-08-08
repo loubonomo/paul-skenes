@@ -368,37 +368,56 @@ footer a { color: var(--gold2); text-decoration: none; }
   .career-table { display:none !important; }
   .hero-stat-grid { grid-template-columns:repeat(2,1fr); gap:6px; }
 
-  /* Controls — row 1: hide everything except Import */
+  /* Controls — merge both rows into one flex flow via display:contents */
+  .controls { display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:4px 6px; }
+  .controls-row { display:contents; }
+  .owned-summary { order:1; white-space:nowrap; font-size:12px; }
+  #filterOwned  { order:2; }
+  #importBtn    { order:3; }
+  #filterBrand  { order:4; }
+  .search-box   { order:5; flex:1 1 100%; }
+  /* Hide unused controls */
   .total-entries-summary { display:none !important; }
-  .result-count { display:none !important; }
-  .btn-clear { display:none !important; }
-  #exportBtn { display:none !important; }
-  #imageMapBtn { display:none !important; }
-  #gridViewBtn { display:none !important; }
-  #viewToggleBtn { display:none !important; }
-  #collectionViewBtn { display:none !important; }
+  .result-count          { display:none !important; }
+  .btn-clear             { display:none !important; }
+  #exportBtn             { display:none !important; }
+  #imageMapBtn           { display:none !important; }
+  #gridViewBtn           { display:none !important; }
+  #viewToggleBtn         { display:none !important; }
+  #collectionViewBtn     { display:none !important; }
+  #filterYear            { display:none !important; }
+  #filterType            { display:none !important; }
+  #sortBy                { display:none !important; }
 
-  /* Controls — row 2: hide year, type, sort; keep owned + brand + search */
-  #filterYear { display:none !important; }
-  #filterType { display:none !important; }
-  #sortBy { display:none !important; }
-  .search-box { flex:1 1 100%; }
+  /* Set headers — compact */
+  .set-header { flex-wrap:wrap; gap:4px 8px; padding:12px 0 8px; align-items:center; }
+  .set-name { font-size:14px; line-height:1.25; flex:1 1 0; min-width:0; }
+  .set-beckett-link, .set-ci-link, .set-release-date { display:none !important; }
+  .set-badge, .set-par-badge, .set-owned-badge { font-size:10px; }
+  .set-toggle { margin-left:auto; }
 
   /* Main table — remove fixed min-width */
   table { min-width:unset !important; table-layout:auto !important; }
 
-  /* Hide columns: thumbnail, tags, parallel, #'d, qty, cost, notes */
+  /* Hide columns: thumbnail, tags, #'d, qty, cost, notes */
   .th-img, .thumb-cell { display:none !important; }
   .th-tags { display:none !important; }
   .main table tbody tr td:nth-child(5) { display:none !important; }
-  .th-par, .c-par { display:none !important; }
   .th-numto, .c-numto { display:none !important; }
   .th-qty, .c-qty-cell { display:none !important; }
   .th-cost, .c-cost-cell { display:none !important; }
   .th-notes, .c-notes { display:none !important; }
 
-  /* Value cell — hide PSA half, keep RAW */
+  /* Parallel column — show but compact */
+  .th-par { font-size:10px; }
+  .c-par { font-size:10px; max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+  /* Card name — truncate to give RAW column room */
+  .main table tbody tr td:nth-child(4) { max-width:90px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+  /* Value cell — hide PSA, show RAW only */
   .c-val-cell .split-half:first-child { display:none !important; }
+  .c-val-cell { font-size:11px; }
 
   /* Card # column — compact */
   .th-num, .c-num { font-size:11px; }
@@ -1016,7 +1035,7 @@ footer a { color: var(--gold2); text-decoration: none; }
   <div class="result-count">Showing <b id="visCount">0</b> of <b id="totCount">0</b></div>
   <button class="btn-clear" onclick="clearOwned()">Clear Owned</button>
   <button id="exportBtn" class="ctrl-btn" onclick="exportMyData()">⬇ Export</button>
-  <button class="ctrl-btn" onclick="document.getElementById('importFileInput').click()">⬆ Import</button>
+  <button id="importBtn" class="ctrl-btn" onclick="document.getElementById('importFileInput').click()">⬆ Import</button>
   <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importMyData(event)">
   <button id="imageMapBtn" class="ctrl-btn" onclick="downloadImageMap()">🖼 Image Map</button>
   <button id="gridViewBtn" class="ctrl-btn" onclick="openGridView()">⊞ Grid View</button>
