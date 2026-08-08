@@ -172,6 +172,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 .set-ci-link { font-size: 10px; font-family: 'Roboto Mono', monospace; color: var(--text3); text-decoration: none; border: 1px solid var(--border2); border-radius: 3px; padding: 2px 6px; white-space: nowrap; transition: border-color .15s, color .15s; background: #fff; }
 .set-ci-link:hover { border-color: #2980b9; color: #2980b9; }
 .set-toggle { margin-left: auto; color: var(--text3); font-size: 11px; }
+.c-par-pr-pill { display:none; }  /* shown only on mobile */
 
 /* ── TABLE ────────────────────────────────────────────────────────── */
 .tbl-wrap { overflow-x: auto; border-radius: 6px; border: 1px solid var(--border); box-shadow: 0 1px 6px rgba(0,0,0,0.06); margin-bottom: 4px; }
@@ -360,12 +361,15 @@ footer a { color: var(--gold2); text-decoration: none; }
   /* Sets Panel */
   .set-nav-panel { display:none !important; }
 
-  /* Hero */
+  /* Hero — show career table on its own line */
   .hero { padding:16px 12px 14px; }
-  .hero-title { font-size:clamp(30px,9vw,44px) !important; }
+  .hero-title { font-size:clamp(28px,8vw,40px) !important; }
   .hero-subtitle { font-size:11px !important; margin-bottom:4px; }
   .hero-right { display:none !important; }
-  .career-table { display:none !important; }
+  .hero-bio-row { flex-wrap:wrap; }
+  .hero-bio-row > div:last-child { flex:1 1 100%; overflow-x:auto; margin-top:6px; }
+  .career-table { display:table !important; font-size:8px; }
+  .career-table thead th, .career-table tbody td { padding:2px 6px 2px 0; white-space:nowrap; }
   .hero-stat-grid { grid-template-columns:repeat(2,1fr); gap:6px; }
 
   /* Controls — merge both rows into one flex flow via display:contents */
@@ -408,16 +412,22 @@ footer a { color: var(--gold2); text-decoration: none; }
   .th-cost, .c-cost-cell { display:none !important; }
   .th-notes, .c-notes { display:none !important; }
 
-  /* Parallel column — show but compact */
-  .th-par { font-size:10px; }
-  .c-par { font-size:10px; max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  /* Parallel column — show, compact, pill below name */
+  .th-par { font-size:9px; }
+  .c-par { font-size:9px; overflow:visible; white-space:normal; max-width:72px; }
+  .c-par .c-par-text, .c-par .par-tmpl-name { display:block; max-width:72px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .c-par-pr-pill { display:block; margin-top:3px; }
 
-  /* Card name — allow wrap */
-  .main table tbody tr td:nth-child(4) { white-space:normal; word-break:break-word; font-size:11px; }
+  /* Card name — smaller font, allow wrap */
+  .main table tbody tr td:nth-child(4) { white-space:normal; word-break:break-word; font-size:10px; }
+  .c-card-title { font-size:10px !important; }
+  .c-card-sub { font-size:9px !important; }
 
-  /* Value cell — hide PSA, show RAW only */
-  .c-val-cell .split-half:first-child { display:none !important; }
-  .c-val-cell { font-size:11px; }
+  /* Value cell — show PSA (gold) + RAW (dark) stacked, no labels */
+  .c-val-cell .split-half:first-child { display:flex !important; }
+  .c-val-cell .split-lbl { display:none !important; }
+  .c-val-cell .split-half { min-height:14px; padding:2px 5px; }
+  .c-val-cell .split-val-psa, .c-val-cell .split-val-raw { font-size:10px; }
 
   /* Card # column — compact */
   .th-num, .c-num { font-size:9px; width:36px; max-width:36px; }
@@ -939,7 +949,7 @@ footer a { color: var(--gold2); text-decoration: none; }
   <div class="hero-inner" id="statsDash">
     <div class="hero-left">
       <div class="hero-bio">
-        <div style="display:flex;gap:8px;align-items:flex-start;">
+        <div class="hero-bio-row" style="display:flex;gap:8px;align-items:flex-start;">
           <div style="flex:1;min-width:0;">
             <div class="hero-label">Pittsburgh Pirates · RHP · #30</div>
             <div class="hero-title">PAUL <span>SKENES</span></div>

@@ -1062,7 +1062,7 @@ function buildAll() {
           <td><div class="c-card-title">${displayTitle(c.title)}</div><div class="c-card-sub">${c.type}</div>${parToggleBtn}</td>
           <td>${mkTags(c.tags)}</td>
           <td class="c-par"><span class="c-par-text" style="${getParallelNameStyle(c.parallel)}">${formatParallelName(c.parallel)}</span>
-            ${'' /* COMMENTED OUT: add-par-btn */}
+            ${c.printRun ? `<div class="c-par-pr-pill">${mkPrintRunPill(c.printRun, c.parallel, c.numPill)}</div>` : ''}
           </td>
           <td class="c-numto">${mkPrintRunPill(c.printRun, c.parallel, c.numPill)}</td>
           <td class="c-qty-cell split-cell">${isBaseOwned ? mkSplitQtyContents(baseKey) : SPLIT_EMPTY}</td>
@@ -1116,6 +1116,7 @@ function buildAll() {
               <td><span class="par-tmpl-label">PARALLEL</span>${p.tags && p.tags.length ? mkTags(p.tags) : ''}</td>
               <td class="c-par">
                 <span class="par-tmpl-name" style="${getParallelNameStyle(p.name)}">${formatParallelName(p.name)}</span>
+                ${p.printRun ? `<div class="c-par-pr-pill">${mkPrintRunPill(p.printRun, p.name)}</div>` : ''}
               </td>
               <td class="c-numto">${mkPrintRunPill(p.printRun, p.name)}</td>
               <td class="c-qty-cell split-cell">${isParOwned ? mkSplitQtyContents(varKey) : SPLIT_EMPTY}</td>
