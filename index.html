@@ -426,11 +426,21 @@ footer a { color: var(--gold2); text-decoration: none; }
   /* Value cell — show PSA (gold) + RAW (dark) stacked, no labels */
   .c-val-cell .split-half:first-child { display:flex !important; }
   .c-val-cell .split-lbl { display:none !important; }
-  .c-val-cell .split-half { min-height:14px; padding:2px 5px; }
+  .c-val-cell { width:1%; }
+  .c-val-cell .split-half { min-height:14px; padding:2px 4px; white-space:nowrap; }
   .c-val-cell .split-val-psa, .c-val-cell .split-val-raw { font-size:10px; }
 
   /* Card # column — compact */
-  .th-num, .c-num { font-size:9px; width:36px; max-width:36px; }
+  .th-num, .c-num { font-size:9px; max-width:54px; }
+
+  /* Parallel expansion rows — compact */
+  .par-tmpl-row .c-card-title { font-size:9px !important; }
+  .par-tmpl-row .c-card-sub   { font-size:8px !important; }
+  .par-tmpl-row .c-num        { font-size:8px !important; }
+  .par-tmpl-row td            { padding-top:2px !important; padding-bottom:2px !important; }
+
+  /* Print-run pills — smaller on mobile */
+  .c-par-pr-pill span { font-size:8px !important; padding:1px 4px !important; }
 }
 
 /* ── TEMPLATE PARALLEL ROWS ───────────────────────────────────────── */
