@@ -412,15 +412,15 @@ footer a { color: var(--gold2); text-decoration: none; }
   .th-par { font-size:10px; }
   .c-par { font-size:10px; max-width:70px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
-  /* Card name — truncate to give RAW column room */
-  .main table tbody tr td:nth-child(4) { max-width:90px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  /* Card name — allow wrap */
+  .main table tbody tr td:nth-child(4) { white-space:normal; word-break:break-word; font-size:11px; }
 
   /* Value cell — hide PSA, show RAW only */
   .c-val-cell .split-half:first-child { display:none !important; }
   .c-val-cell { font-size:11px; }
 
   /* Card # column — compact */
-  .th-num, .c-num { font-size:11px; }
+  .th-num, .c-num { font-size:9px; width:36px; max-width:36px; }
 }
 
 /* ── TEMPLATE PARALLEL ROWS ───────────────────────────────────────── */
