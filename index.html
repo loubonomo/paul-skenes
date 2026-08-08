@@ -356,6 +356,54 @@ footer a { color: var(--gold2); text-decoration: none; }
   .main, .controls { padding-left: 12px; padding-right: 12px; }
 }
 
+@media (max-width: 640px) {
+  /* Sets Panel */
+  .set-nav-panel { display:none !important; }
+
+  /* Hero */
+  .hero { padding:16px 12px 14px; }
+  .hero-title { font-size:clamp(30px,9vw,44px) !important; }
+  .hero-subtitle { font-size:11px !important; margin-bottom:4px; }
+  .hero-right { display:none !important; }
+  .career-table { display:none !important; }
+  .hero-stat-grid { grid-template-columns:repeat(2,1fr); gap:6px; }
+
+  /* Controls — row 1: hide everything except Import */
+  .total-entries-summary { display:none !important; }
+  .result-count { display:none !important; }
+  .btn-clear { display:none !important; }
+  #exportBtn { display:none !important; }
+  #imageMapBtn { display:none !important; }
+  #gridViewBtn { display:none !important; }
+  #viewToggleBtn { display:none !important; }
+  #collectionViewBtn { display:none !important; }
+
+  /* Controls — row 2: hide year, type, sort; keep owned + brand + search */
+  #filterYear { display:none !important; }
+  #filterType { display:none !important; }
+  #sortBy { display:none !important; }
+  .search-box { flex:1 1 100%; }
+
+  /* Main table — remove fixed min-width */
+  table { min-width:unset !important; table-layout:auto !important; }
+
+  /* Hide columns: thumbnail, tags, parallel, #'d, qty, cost, notes */
+  .th-img, .thumb-cell { display:none !important; }
+  .th-tags { display:none !important; }
+  .main table tbody tr td:nth-child(5) { display:none !important; }
+  .th-par, .c-par { display:none !important; }
+  .th-numto, .c-numto { display:none !important; }
+  .th-qty, .c-qty-cell { display:none !important; }
+  .th-cost, .c-cost-cell { display:none !important; }
+  .th-notes, .c-notes { display:none !important; }
+
+  /* Value cell — hide PSA half, keep RAW */
+  .c-val-cell .split-half:first-child { display:none !important; }
+
+  /* Card # column — compact */
+  .th-num, .c-num { font-size:11px; }
+}
+
 /* ── TEMPLATE PARALLEL ROWS ───────────────────────────────────────── */
 .par-tmpl-row { display: none; }
 .par-tmpl-row td { background: rgba(201,162,58,0.03) !important; }
@@ -967,11 +1015,11 @@ footer a { color: var(--gold2); text-decoration: none; }
   <div class="total-entries-summary">Total Items: <b id="totalEntries">0</b></div>
   <div class="result-count">Showing <b id="visCount">0</b> of <b id="totCount">0</b></div>
   <button class="btn-clear" onclick="clearOwned()">Clear Owned</button>
-  <button class="ctrl-btn" onclick="exportMyData()">⬇ Export</button>
+  <button id="exportBtn" class="ctrl-btn" onclick="exportMyData()">⬇ Export</button>
   <button class="ctrl-btn" onclick="document.getElementById('importFileInput').click()">⬆ Import</button>
   <input type="file" id="importFileInput" accept=".json" style="display:none" onchange="importMyData(event)">
-  <button class="ctrl-btn" onclick="downloadImageMap()">🖼 Image Map</button>
-  <button class="ctrl-btn" onclick="openGridView()">⊞ Grid View</button>
+  <button id="imageMapBtn" class="ctrl-btn" onclick="downloadImageMap()">🖼 Image Map</button>
+  <button id="gridViewBtn" class="ctrl-btn" onclick="openGridView()">⊞ Grid View</button>
   <button id="viewToggleBtn" onclick="toggleBinderView()">📒 Binder View</button>
   <button id="collectionViewBtn" class="ctrl-btn" onclick="openCollectionView()">⚾ Collection View</button>
   </div>
